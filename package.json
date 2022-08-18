@@ -1,0 +1,26 @@
+{
+  "name": "restaurant",
+  "version": "1.0.0",
+  "description": "A web app for managing a restaurant.",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mdigambia/restaurant.git"
+  },
+  "author": "A Camariana",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mdigambia/restaurant/issues"
+  },
+  "homepage": "https://github.com/mdigambia/restaurant#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  }
+}
