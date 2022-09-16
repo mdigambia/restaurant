@@ -1,6 +1,9 @@
+require('dotenv').config()
+const mongoose = require('mongoose')
+
 const express = require('express')
 const app = express()
-const port = 3000
+const port = process.env.PORT
 
 const middleware = require('./utilities/middleware')
 
@@ -9,6 +12,33 @@ app.use(express.json())
 app.use(middleware.requestLogger)
 
 
+
+const URI = process.env.MONGODB_URI
+const connect = () => {
+  return mongoose.connect(
+    URI,
+    {
+      useNewUrlParser: true, 
+      useUnifiedTopology: true,
+      autoIndex: false
+    }
+  )
+}
+
+try {
+  connect() // Invoking the connect function
+  console.log('connected to MongoDB');
+} catch (error) {
+  console.log('error connection to MongoDB:', error.message)
+}
+
+
+
+
+
+
+
+// TODO: once we get the database working we need to remove this
 const me = {
   name: 'Lamin Mannheh',
   email: 'la@gmail.com',
@@ -32,6 +62,30 @@ let users = [
     password: 'secrete'
   }
 
+]
+
+
+
+const potions = [
+  {
+    potion_id: 1,
+    name: "love",
+    price: 12,
+    vendor_id: 1
+  },
+  {
+    potion_id: 2,
+    name: "love",
+    price: 12,
+    vendor_id: 1
+  },
+  {
+    potion_id: 3,
+    name: "love",
+    price: 12,
+    vendor_id: 1,
+    profile_image: '/assets/images/profile.jpg'
+  }
 ]
 
 
@@ -66,8 +120,6 @@ app.put('/api/users/:id', (req, res) => {
 
   res.id
 })
-
-
 
 
 app.use(middleware.unknownEndpoint)
